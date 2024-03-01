@@ -1,0 +1,82 @@
+{
+  "name": "amz-lambda-tool",
+  "version": "1.0.0",
+  "description": "Servie transport for AWS lambda proxy",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "prettier": "prettier --write",
+    "format": "npm run prettier -- \"{.,src/**}/*.{js,ts,json,md,yml,css}\"",
+    "lint": "tslint \"src/**/*.ts\" --project tsconfig.json",
+    "build": "rimraf dist/ && tsc",
+    "specs": "jest --coverage",
+    "test": "npm run lint && npm run build && npm run specs",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kovop/amz-lambda-tool.git"
+  },
+  "keywords": [
+    "service",
+    "aws",
+    "lambda",
+    "request",
+    "async",
+    "http"
+  ],
+  "author": {
+    "name": "Blake Embrey",
+    "email": "hello@blakeembrey.com",
+    "url": "http://blakeembrey.me"
+  },
+  "license": "Apache-2.0",
+  "jest": {
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "transform": {
+      "\\.tsx?$": "ts-jest"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md,yml,css}": [
+      "npm run prettier",
+      "git add"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "@types/node": "^12.0.2",
+    "husky": "^2.3.0",
+    "jest": "^24.1.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
+    "rimraf": "^2.5.4",
+    "servie": "^4.2.1",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.3.3333"
+  },
+  "peerDependencies": {
+    "servie": "^4.2.0"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.23",
+    "servie-errorhandler": "^2.0.0",
+    "servie-finalhandler": "^2.0.0"
+  }
+}
